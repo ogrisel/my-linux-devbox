@@ -1,0 +1,3 @@
+base:
+  '*':
+    - scipy-stack
