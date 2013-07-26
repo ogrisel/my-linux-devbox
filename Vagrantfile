@@ -8,9 +8,13 @@ Vagrant.configure("2") do |config|
 
   ## For masterless, mount your file roots file root
   config.vm.synced_folder "salt/roots/", "/srv/"
-  config.vm.synced_folder "work", "/home/vagrant/work"
-  config.vm.synced_folder "../code/scikit-learn", "/home/vagrant/scikit-learn"
-  config.vm.synced_folder "../code/joblib", "/home/vagrant/joblib"
+
+  ## Make the venvs visible from the host OS
+  config.vm.synced_folder "venvs", "/home/vagrant/venvs"
+
+  ## Setup shared folder to my work repos
+  config.vm.synced_folder "../scikit-learn", "/home/vagrant/scikit-learn"
+  config.vm.synced_folder "../joblib", "/home/vagrant/joblib"
 
   ## Forward the default IPython notebook port on the guest
   ## to the host
