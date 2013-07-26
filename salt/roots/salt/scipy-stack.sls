@@ -31,12 +31,13 @@ python3-pip-packages:
         - python: python3
 
 
-/home/vagrant/work:
+/home/vagrant/venvs:
     file.directory:
         - makedirs: True
+        - user: vagrant
 
 
-/home/vagrant/work/venv2:
+/home/vagrant/venvs/venv2:
     virtualenv.managed:
         - python: python
         - system_site_packages: True
@@ -44,11 +45,11 @@ python3-pip-packages:
         - distribute: True
         - runas: vagrant
         - require:
-            - file: /home/vagrant/work
+            - file: /home/vagrant/venvs
             - pkg: python-virtualenv
 
 
-/home/vagrant/work/venv3:
+/home/vagrant/venvs/venv3:
     virtualenv.managed:
         - python: python3
         - system_site_packages: True
@@ -56,7 +57,7 @@ python3-pip-packages:
         - distribute: True
         - runas: vagrant
         - require:
-            - file: /home/vagrant/work
+            - file: /home/vagrant/venvs
             - pip: python3-pip-packages
 
 venv3-packages:
@@ -64,4 +65,4 @@ venv3-packages:
         - names:
             - coverage
             - nose
-        - bin_env: /home/vagrant/work/venv3
+        - bin_env: /home/vagrant/venvs/venv3

@@ -36,6 +36,3 @@ nosetests.xml
 
 .vagrant
 
-
-# Specific stuff
-work
