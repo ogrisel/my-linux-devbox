@@ -1,6 +1,10 @@
-# Vagrant / Salt to work with Python 2 and 3 ScipPy stack
+# Vagrant setup to work with Python 2 / 3 & SciPy
 
-To use install:
+Use Vagrant to automatically configure a Ubuntu VM from scratch and bootstrap
+it with [SaltStack](http://docs.saltstack.com/) to install the SciPy stack with
+a mix of Ubuntu packages and virtualenvs.
+
+To get started install:
 
 - [Virtualbox](https://www.virtualbox.org/) (Virtual Machine runner)
 - [Vagrant](http://www.vagrantup.com/) (Command-line tool to control VMs)
