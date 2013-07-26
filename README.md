@@ -2,8 +2,8 @@
 
 To use install:
 
-- virtualbox
-- vagrant
+- [Virtualbox](https://www.virtualbox.org/) (Virtual Machine runner)
+- [Vagrant](http://www.vagrantup.com/) (Command-line tool to control VMs)
 
 Then enable `salty-vagrant` with:
 
@@ -58,10 +58,11 @@ In particular the Ubuntu packages and virtualenv configuration is in:
 Read the [SaltStack documentation](http://docs.saltstack.com/) to get started
 with custom state files.
 
-If you edit the salt configuration you can reapply.
+If you edit the salt configuration you can ask salt to quickly take all your
+changes into accout from inside the VM:
 
     [guest]$ sudo salt-call state.highstate
 
-Alternatively you can reboot the whole VM with:
+Alternatively you can reboot the whole VM with from outside of the VM:
 
     [host]$ vagrant reload
