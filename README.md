@@ -28,9 +28,9 @@ Once started you can ssh into the VM with:
 SSH agent forwarding is enabled by default to be able to use git from inside
 the VM if needed.
 
-Once there you can activate one of the 2 venvs:
+Once there you can activate one of the 2 venvs, for instance for Python 3:
 
-    [guest]$ . venvs/py3/bin/activate
+    [guest]$ . venvs/venv3/bin/activate
 
 You can suspend / resume the VM with to temporarily free the memory on the host
 with `vagrant suspend` / `vagrant resume`. Or shutfown and destroy the VM
