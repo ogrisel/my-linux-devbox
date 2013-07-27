@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   ## Allocate 1024MB of RAM for the VM instead of 512MB by default
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", 1024]
+    vb.customize ["modifyvm", :id, "--memory", 2048]
   end
 
   ## Forward SSH agent
