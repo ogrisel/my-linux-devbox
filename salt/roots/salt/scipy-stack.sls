@@ -18,6 +18,7 @@ scipy-stack-packages:
             - ipython
 
             # Python3 stack
+            - python3
             - python3-numpy
             - python3-scipy
             - python3-matplotlib
@@ -57,6 +58,7 @@ python3-pip-packages:
         - distribute: True
         - runas: vagrant
         - require:
+            - pkg: python3
             - file: /home/vagrant/venvs
             - pip: python3-pip-packages
 
@@ -66,3 +68,10 @@ venv3-packages:
             - coverage
             - nose
         - bin_env: /home/vagrant/venvs/venv3
+        - require:
+            - virtualenv: /home/vagrant/venvs/venv3
+
+ldconfig:
+    cmd.run:
+        - require:
+            - pip: venv3-packages
