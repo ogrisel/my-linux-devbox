@@ -7,6 +7,10 @@ scipy-stack-packages:
             - vim
             - python-git
 
+            # Optimized BLAS / LAPACK
+            - libatlas3-base
+            - libatlas-dev
+
             # Python2 stack
             - python-numpy
             - python-scipy

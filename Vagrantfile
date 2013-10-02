@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
 
   ## Setup shared folder to my usual git repos
   config.vm.synced_folder "../../scikit_learn_data", "/home/vagrant/scikit_learn_data"
-  config.vm.synced_folder "../scikit-learn", "/home/vagrant/scikit-learn"
-  config.vm.synced_folder "../joblib", "/home/vagrant/joblib"
+  config.vm.synced_folder "../../code", "/home/vagrant/code"
+  config.vm.synced_folder "../../data", "/home/vagrant/data"
 
   ## Forward the default IPython notebook port on the guest
   ## to the host
