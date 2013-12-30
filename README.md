@@ -13,6 +13,11 @@ Then enable `salty-vagrant` with:
 
     [host]$ vagrant plugin install vagrant-salt
 
+It can be helpful to tell vagrant to automatically install the virtualbox
+guest additions for the matching version to solve shared folder issues:
+
+    [host]$ vagrant plugin install vagrant-vbguest
+
 Then you can start the VM with:
 
     [host]$ vagrant up
