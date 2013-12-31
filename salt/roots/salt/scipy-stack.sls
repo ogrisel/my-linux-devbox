@@ -1,6 +1,13 @@
-scipy-stack-packages:
-    pkg:
-        - installed
+deadsnakes-ppa:
+  pkg.installed:
+    - names:
+        - python-software-properties
+  pkgrepo.managed:
+    - ppa: fkrull/deadsnakes
+
+
+system-packages:
+    pkg.installed:
         - names:
             # Salt optional stuff
             - git
@@ -11,29 +18,39 @@ scipy-stack-packages:
             - libatlas3-base
             - libatlas-dev
 
-            # Python2 stack
-            - python-numpy
-            - python-scipy
-            - python-matplotlib
+            - libpng-dev
+            - libjpeg-dev
+            - libfreetype6-dev
+
+            # Python interpreters
+            {% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
+            - python{{ pyversion }}
+            - python{{ pyversion }}-dev
+            {% endfor %}
+
+            # Install all Python packages from source or wheels in virtualenvs
+            # with pip
             - python-pip
-            - python-coverage
-            - python-virtualenv
-            - python-nose
-            - ipython
+        - require:
+            - pkgrepo: deadsnakes-ppa
 
-            # Python3 stack
-            - python3
-            - python3-numpy
-            - python3-scipy
-            - python3-matplotlib
-            - python3-pip
-            - ipython3
 
-python3-pip-packages:
-    pip.installed:
-        - names:
-            - virtualenv
-        - python: python3
+common-pip-packages:
+  pip.installed:
+    - names:
+        - virtualenv
+        - virtualenvwrapper
+    - require:
+      - pkg: python-pip
+
+
+/home/vagrant/.bashrc:
+  file.append:
+    - text:
+        - export WORKON_HOME="/home/vagrant/venvs"
+        - source /usr/local/bin/virtualenvwrapper.sh
+    - require:
+        - pip: virtualenvwrapper
 
 
 /home/vagrant/venvs:
@@ -42,40 +59,23 @@ python3-pip-packages:
         - user: vagrant
 
 
-/home/vagrant/venvs/venv2:
+{% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
+/home/vagrant/venvs/{{ pyversion }}:
     virtualenv.managed:
-        - python: python
-        - system_site_packages: True
-        - ignore_installed: True
+        - python: python{{ pyversion }}
         - distribute: True
         - runas: vagrant
         - require:
+            - pkg: python{{ pyversion }}
             - file: /home/vagrant/venvs
-            - pkg: python-virtualenv
-
-
-/home/vagrant/venvs/venv3:
-    virtualenv.managed:
-        - python: python3
-        - system_site_packages: True
-        - ignore_installed: True
-        - distribute: True
-        - runas: vagrant
-        - require:
-            - pkg: python3
-            - file: /home/vagrant/venvs
-            - pip: python3-pip-packages
-
-venv3-packages:
+            - pip: virtualenv
     pip.installed:
         - names:
             - coverage
             - nose
-        - bin_env: /home/vagrant/venvs/venv3
-        - require:
-            - virtualenv: /home/vagrant/venvs/venv3
+            - ipython[all]
+            - matplotlib
+        - bin_env: /home/vagrant/venvs/{{ pyversion }}
+        - runas: vagrant
+{% endfor %}
 
-ldconfig:
-    cmd.run:
-        - require:
-            - pip: venv3-packages
