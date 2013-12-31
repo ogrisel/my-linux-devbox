@@ -85,7 +85,7 @@ common-pip-packages:
             - wheel
             - coverage
             - nose
-            - ipython[all]
+            - ipython
         - bin_env: /home/vagrant/venvs/{{ pyversion }}
         - user: vagrant
         - use_wheel: True
