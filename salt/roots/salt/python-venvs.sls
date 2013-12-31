@@ -18,7 +18,11 @@ system-packages:
             - libatlas3-base
             - libatlas-dev
 
+            # Generic build tools
+            - build-essential
+
             # Matplotlib system build dependencies
+            # TODO: move me to a scipy stack state file instead
             - libagg-dev
             - libpng-dev
             - libjpeg-dev
@@ -26,6 +30,8 @@ system-packages:
             - libfontconfig1-dev
 
             # Python interpreters
+            # TODO: put the list of python versions in a variable of the
+            # saltstack pillar instead of hardcoding it here
             {% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
             - python{{ pyversion }}
             - python{{ pyversion }}-dev
@@ -72,12 +78,14 @@ common-pip-packages:
             - pkg: python{{ pyversion }}
             - file: /home/vagrant/venvs
             - pip: virtualenv
+
+    # Common dev tools that do not require
     pip.installed:
         - names:
+            - wheel
             - coverage
             - nose
             - ipython[all]
-            - matplotlib
         - bin_env: /home/vagrant/venvs/{{ pyversion }}
         - user: vagrant
         - use_wheel: True

@@ -1,3 +1,3 @@
 base:
   '*':
-    - scipy-stack
+    - python-venvs
