@@ -18,9 +18,12 @@ system-packages:
             - libatlas3-base
             - libatlas-dev
 
+            # Matplotlib system build dependencies
+            - libagg-dev
             - libpng-dev
             - libjpeg-dev
             - libfreetype6-dev
+            - libfontconfig1-dev
 
             # Python interpreters
             {% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
@@ -76,6 +79,7 @@ common-pip-packages:
             - ipython[all]
             - matplotlib
         - bin_env: /home/vagrant/venvs/{{ pyversion }}
-        - runas: vagrant
+        - user: vagrant
+        - use_wheel: True
 {% endfor %}
 
