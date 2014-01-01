@@ -23,7 +23,7 @@ Then you can start the VM with:
     [host]$ vagrant up
 
 The first start takes a couple of minutes to download the VM image, boot it,
-and install most of the Scipy stats package with Salt. Subsequent calls to
+and install most of the Scipy stack packages with Salt. Subsequent calls to
 `vagrant up` will be much faster.
 
 Once started you can ssh into the VM with:
@@ -33,9 +33,11 @@ Once started you can ssh into the VM with:
 SSH agent forwarding is enabled by default to be able to use git from inside
 the VM if needed.
 
-Once there you can activate one of the 2 venvs, for instance for Python 3:
+Once there you can activate one of the virtualenvs, for instance for the Python
+3.3 virtualenv:
 
-    [guest]$ . venvs/venv3/bin/activate
+    [guest]$ workon 3.3
+    (3.3)[guest]$ ipython
 
 You can suspend / resume the VM with to temporarily free the memory on the host
 with `vagrant suspend` / `vagrant resume`. Or shutfown and destroy the VM
