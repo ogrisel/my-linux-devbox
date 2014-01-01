@@ -62,7 +62,7 @@ The configuration is a bunch of text files in:
 
 In particular the Ubuntu packages and virtualenv configuration is in:
 
-    salt/roots/salt/scipy-stack.sls
+    salt/roots/salt/python-venvs.sls
 
 Read the [SaltStack documentation](http://docs.saltstack.com/) to get started
 with custom state files.
@@ -75,3 +75,9 @@ changes into accout from inside the VM:
 Alternatively you can reboot the whole VM with from outside of the VM:
 
     [host]$ vagrant reload
+
+You can even shutdown and delete the VM to restart the provisioning from
+scratch with:
+
+    [host]$ vagrant destroy
+    [host]$ vagrant up
