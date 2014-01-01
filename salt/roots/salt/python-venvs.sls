@@ -68,6 +68,12 @@ common-pip-packages:
         - user: vagrant
 
 
+/home/vagrant/pip-cache:
+    file.directory:
+        - makedirs: True
+        - user: vagrant
+
+
 {% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
 /home/vagrant/venvs/{{ pyversion }}:
     virtualenv.managed:
@@ -89,5 +95,8 @@ common-pip-packages:
         - bin_env: /home/vagrant/venvs/{{ pyversion }}
         - user: vagrant
         - use_wheel: True
+        - download_cache: /home/vagrant/pip-cache
+        - require:
+            - file: /home/vagrant/pip-cache
 {% endfor %}
 
