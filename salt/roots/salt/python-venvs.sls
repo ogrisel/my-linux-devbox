@@ -14,12 +14,17 @@ system-packages:
             - vim
             - python-git
 
-            # Optimized BLAS / LAPACK
-            - libatlas3-base
-            - libatlas-dev
-
             # Generic build tools
             - build-essential
+
+            # Optimized BLAS / LAPACK and gfortran compiler + runtime
+            - libatlas3gf-base
+            - libatlas-dev
+            - gfortran
+            - gfortran-4.8
+            - libgfortran-4.8-dev
+            - liblapack3
+            - liblapack-dev
 
             # Matplotlib system build dependencies
             # TODO: move me to a scipy stack state file instead
@@ -69,6 +74,12 @@ common-pip-packages:
 
 
 /home/vagrant/pip-cache:
+    file.directory:
+        - makedirs: True
+        - user: vagrant
+
+
+/vagrant/wheelhouse:
     file.directory:
         - makedirs: True
         - user: vagrant
