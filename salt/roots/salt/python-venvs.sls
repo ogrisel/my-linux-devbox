@@ -112,5 +112,19 @@ common-pip-packages:
         - download_cache: /home/vagrant/pip-cache
         - require:
             - file: /home/vagrant/pip-cache
+
+scipy_wheels_{{ pyversion }}:
+    pip.installed:
+        - names:
+            - numpy
+            - scipy
+        - bin_env: /home/vagrant/venvs/{{ pyversion }}
+        - user: vagrant
+        - use_wheel: True
+        - no_index: True
+        - find_links: /vagrant/wheelhouse
+        - require:
+            - virtualenv: /home/vagrant/venvs/{{ pyversion }}
+            - pip: wheel
 {% endfor %}
 
