@@ -58,6 +58,9 @@ common-pip-packages:
       - pkg: python-pip
 
 
+# Enable virtualenvwrapper's workon command in the vagrant user bash
+# environment to make it convenient to switch from a venv to another
+# when connected to the interactive shell with "vagrant ssh"
 /home/vagrant/.bashrc:
   file.append:
     - text:
