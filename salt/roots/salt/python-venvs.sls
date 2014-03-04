@@ -99,19 +99,21 @@ common-pip-packages:
             - file: /home/vagrant/venvs
             - pip: virtualenv
 
-    # Common dev tools that do not require
+    # Common dev tools that do not require wheels
     pip.installed:
         - names:
+            - pip
             - wheel
             - coverage
             - nose
             - ipython
         - bin_env: /home/vagrant/venvs/{{ pyversion }}
         - user: vagrant
-        - use_wheel: True
+        - upgrade: True
         - download_cache: /home/vagrant/pip-cache
         - require:
             - file: /home/vagrant/pip-cache
+            - virtualenv: /home/vagrant/venvs/{{ pyversion }}
 
 scipy_wheels_{{ pyversion }}:
     pip.installed:
