@@ -9,10 +9,6 @@ To get started install:
 - [Virtualbox](https://www.virtualbox.org/) (Virtual Machine runner)
 - [Vagrant](http://www.vagrantup.com/) (Command-line tool to control VMs)
 
-Then enable `salty-vagrant` with:
-
-    [host]$ vagrant plugin install vagrant-salt
-
 It can be helpful to tell vagrant to automatically install the virtualbox
 guest additions for the matching version to solve shared folder issues:
 
