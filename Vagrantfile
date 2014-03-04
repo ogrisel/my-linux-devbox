@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", 22000]
-    vb.customize ["modifyvm", :id, "--cpus", 4]
+    vb.customize ["modifyvm", :id, "--cpus", 12]
   end
 
   ## Forward SSH agent
