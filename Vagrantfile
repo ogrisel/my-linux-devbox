@@ -1,11 +1,14 @@
 Vagrant.configure("2") do |config|
   ## Choose your base box
-  config.vm.box = "saucy64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "saucy64-lxc"
 
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", 22000]
-    vb.customize ["modifyvm", :id, "--cpus", 4]
+  #config.vm.provider :virtualbox do |vb|
+  #  vb.customize ["modifyvm", :id, "--memory", 22000]
+  #  vb.customize ["modifyvm", :id, "--cpus", 4]
+  #end
+
+  config.vm.provider :lxc do |lxc|
+    lxc.customize 'cgroup.memory.limit_in_bytes', '22G'
   end
 
   ## Forward SSH agent
