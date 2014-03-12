@@ -128,5 +128,18 @@ scipy_wheels_{{ pyversion }}:
         - require:
             - virtualenv: /home/vagrant/venvs/{{ pyversion }}
             - pip: wheel
+
+more_packages_{{ pyversion }}:
+    pip.installed:
+        - names:
+            - matplotlib
+            - pandas
+        - bin_env: /home/vagrant/venvs/{{ pyversion }}
+        - user: vagrant
+        - upgrade: True
+        - download_cache: /home/vagrant/pip-cache
+        - require:
+            - virtualenv: /home/vagrant/venvs/{{ pyversion }}
+            - pip: numpy
 {% endfor %}
 

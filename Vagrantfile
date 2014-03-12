@@ -22,6 +22,8 @@ Vagrant.configure("2") do |config|
   ## Forward the default IPython notebook port on the guest
   ## to the host
   config.vm.network :forwarded_port, guest: 8888, host: 18888
+  config.vm.network :forwarded_port, guest: 8889, host: 18889
+  config.vm.network :forwarded_port, guest: 8890, host: 18890
 
   ## Set your salt configs here
   config.vm.provision :salt do |salt|
