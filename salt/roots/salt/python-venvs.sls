@@ -1,3 +1,5 @@
+{% set pyversions = ['2.6','2.7', '3.3', '3.4'] %}
+
 deadsnakes-ppa:
   pkg.installed:
     - names:
@@ -37,7 +39,7 @@ system-packages:
             # Python interpreters
             # TODO: put the list of python versions in a variable of the
             # saltstack pillar instead of hardcoding it here
-            {% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
+            {% for pyversion in pyversions %}
             - python{{ pyversion }}
             - python{{ pyversion }}-dev
             {% endfor %}
@@ -88,7 +90,7 @@ common-pip-packages:
         - user: vagrant
 
 
-{% for pyversion in ['2.6','2.7','3.2', '3.3'] %}
+{% for pyversion in pyversions %}
 /home/vagrant/venvs/{{ pyversion }}:
     virtualenv.managed:
         - python: python{{ pyversion }}

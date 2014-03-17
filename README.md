@@ -30,10 +30,10 @@ SSH agent forwarding is enabled by default to be able to use git from inside
 the VM if needed.
 
 Once there you can activate one of the virtualenvs, for instance for the Python
-3.3 virtualenv:
+3.4 virtualenv:
 
-    [guest]$ workon 3.3
-    (3.3)[guest]$ ipython
+    [guest]$ workon 3.4
+    (3.4)[guest]$ ipython
 
 You can suspend / resume the VM with to temporarily free the memory on the host
 with `vagrant suspend` / `vagrant resume`. Or shutfown and destroy the VM
@@ -79,3 +79,21 @@ scratch with:
 
     [host]$ vagrant destroy
     [host]$ vagrant up
+
+
+## Building numpy and scipy wheel packages
+
+To speedup the dev setup, this repo comes with a wheelhouse folder with pre-built
+numpy and scipy `whl` packages.
+
+To build wheel packages for newer versions of numpy and scipy you can use (for instance
+with Python 3.4):
+
+    [guest]$ workon 3.4
+    (3.4)[guest]$ pip wheel --download-cache=~/pip-cache \
+                            --wheel-dir=/vagrant/wheelhouse numpy
+    (3.4)[guest]$ pip install /vagrant/wheelhouse/numpy-*-cp34-cp34m-linux_x86_64.whl
+
+    (3.4)[guest]$ pip wheel --download-cache=~/pip-cache \
+                            --wheel-dir=/vagrant/wheelhouse scipy
+    (3.4)[guest]$ pip install /vagrant/wheelhouse/scipy-*-cp34-cp34m-linux_x86_64.whl
